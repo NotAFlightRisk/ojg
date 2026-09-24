@@ -449,6 +449,9 @@ func wildWalk(rest, path Expr, nodes []any, cb func(path Expr, nodes []any), f F
 		rwalk:
 			switch rt.Kind() {
 			case reflect.Pointer:
+				if rd.IsNil() {
+					return
+				}
 				rt = rt.Elem()
 				rd = rd.Elem()
 				goto rwalk
