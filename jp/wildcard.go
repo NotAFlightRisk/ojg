@@ -271,6 +271,9 @@ func (f Wildcard) locate(pp Expr, data any, rest Expr, max int) (locs []Expr) {
 	case nil:
 		// no match
 	default:
+		if isNil(data) {
+			return
+		}
 		rd := reflect.ValueOf(data)
 		rt := rd.Type()
 		if rt.Kind() == reflect.Pointer {
